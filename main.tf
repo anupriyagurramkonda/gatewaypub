@@ -1,6 +1,6 @@
 # Internet VPC
 resource "aws_vpc" "VPC" {
-    cidr_block = "${var.VPC_CIDR}"
+    cidr_block = "${var.vpc_cidr}"
     instance_tenancy = "default"
     enable_dns_support = "true"
     enable_dns_hostnames = "true"
