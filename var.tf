@@ -10,35 +10,17 @@ variable "aws_secret_key" {
 
 }
 
-variable "vpc_cidr" {
+variable "VPC_CIDR" {
 	
 }
 
-variable "vpc_name" {
-	
-}
-
-variable "subnets_cidr1" {
-
-}
-
-variable "azs1" {
-	
-}
-
-variable "azs2" {
+variable "ENV" {
         
 }
 
-variable "subnets_cidr2" {
+variable "PublicSubnetAZCIDR" {
         
 }
 
-variable "subnet_pub" {
-	
-}
 
-variable "subnet_pri" {
-	
-}
 
