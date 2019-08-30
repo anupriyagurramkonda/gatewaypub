@@ -7,7 +7,7 @@ before_install:
 #These two steps will effectively validate our terraform and output a list of any changes to be made to our infrastructure
 script:
  - chmod 777 deploy.sh
- - ./deploy.sh "$region" "$VPC_CIDR" "$PublicSubnetAZCIDR" "$ENV"
+ - ./deploy.sh "$region" "$VPC_CIDR" "$PublicSubnetAZCIDR" "$Name"
  
  
 
