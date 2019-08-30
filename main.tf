@@ -6,19 +6,19 @@ resource "aws_vpc" "VPC" {
     enable_dns_hostnames = "true"
     enable_classiclink = "false"
     tags = {
-        Name = "${var.ENV}-VPC"
+        Name = "${var.name}-VPC"
     }
 }
 
 # Subnets
-resource "aws_subnet" "Public-AZ-SN" {
+resource "aws_subnet" "SN-AZ" {
     vpc_id = "${aws_vpc.VPC.id}"
-    cidr_block = "${var.PublicSubnetAZCIDR}"
+    cidr_block = "${var.subnet_cidr}"
     map_public_ip_on_launch = "true"
-    availability_zone = "us-east-1a"
+    availability_zone = "${var.subnet_az}"
 
     tags = {
-        Name = "${var.ENV}-VPC-Public-AZ-SN"
+        Name = "${var.name}-VPC-SN-AZ"
     }
 }
 # Internet GW
@@ -26,7 +26,7 @@ resource "aws_internet_gateway" "Igw" {
     vpc_id = "${aws_vpc.VPC.id}"
 
     tags = {
-        Name = "${var.ENV}-VPC-IGW"
+        Name = "${var.name}-VPC-IGW"
     }
 }
 
@@ -38,10 +38,10 @@ resource "aws_eip" "nat" {
 #Nat_gw
 resource "aws_nat_gateway" "Ngw" {
   allocation_id = "${aws_eip.nat.id}"
-  subnet_id     = "${aws_subnet.Public-AZ-SN.id}"
+  subnet_id     = "${aws_subnet.SN-AZ.id}"
 
   tags = {
-     Name = "${var.ENV}-VPC-NGW"
+     Name = "${var.name}-VPC-NGW"
   }
   depends_on = ["aws_internet_gateway.Igw"]
 }
